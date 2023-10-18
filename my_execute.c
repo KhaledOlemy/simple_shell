@@ -17,7 +17,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 
 	while (environ[z])
 	{
-		venv[z] = _strdup(environ[z]);
+		venv[z] = _strdup(environ[z]); /*********************/
 		z++;
 	}
 	venv[z] = NULL;
@@ -26,27 +26,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	if (_strcmp(honda, "exit") == 0)
 	{
 		new_exit.exit_1 = honda;
-
-		if (temp[1])
-		{
-			exit_code_temp = _atoi(temp[1]);
-			if ((exit_code_temp == 0) && (_strcmp(temp[1], "0") == 0))
-			{
-				new_exit.exit_2 = 0;
-			}
-			else if ((exit_code_temp == 0) && (_strcmp(temp[1], "0") != 0))
-			{
-				new_exit.exit_2 = 128;
-			}
-			else
-			{
-				new_exit.exit_2 = exit_code_temp;
-			}
-		}
-		else
-		{
-			new_exit.exit_2 = 0;
-		}
+		new_exit.exit_2 = 0;
 		return (new_exit);
 	}
 	new_exit.exit_1 = NULL;
