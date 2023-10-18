@@ -11,6 +11,11 @@ void string_splitter(char *arr[], char *str, char *dlm)
 	char *piece;
 	int ctr = 0;
 
+	if (_strcmp(str, "/") == 0)
+	{
+		arr[0] = NULL;
+		return;
+	}
 	piece = strtok(str, dlm);
 	if (piece)
 	{
@@ -25,6 +30,7 @@ void string_splitter(char *arr[], char *str, char *dlm)
 	}
 	else
 	{
+		arr[0] = NULL;
 		return;
 	}
 }

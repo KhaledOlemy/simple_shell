@@ -17,16 +17,28 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 
 	while (environ[z])
 	{
-		venv[z] = _strdup(environ[z]); /*********************/
+		venv[z] = _strdup(environ[z]);
 		z++;
 	}
 	venv[z] = NULL;
 	string_splitter(temp, cmd, "\n ");
-	honda = _strdup(temp[0]);
+	honda = _strdup(temp[0]);		/*********************/
+	if (!honda)
+	{
+		_printf("Command '%s' not found\n", honda);
+		new_exit.exit_1 = NULL;
+		new_exit.exit_2 = 127;
+		free_array(temp);
+		free_array(venv);
+		return (new_exit);
+	}
 	if (_strcmp(honda, "exit") == 0)
 	{
-		new_exit.exit_1 = honda;
+		new_exit.exit_1 = _strdup(honda);	/*********************/
 		new_exit.exit_2 = 0;
+		free_array(temp);
+		free_array(venv);
+		free(honda);
 		return (new_exit);
 	}
 	new_exit.exit_1 = NULL;
@@ -34,6 +46,9 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	{
 		current_env();
 		new_exit.exit_2 = 0;
+		free_array(temp);
+		free_array(venv);
+		free(honda);
 		return (new_exit);
 	}
 	foundit = search_in_paths(temp[0], envv);
@@ -42,6 +57,9 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 		free(foundit);
 		_printf("Command '%s' not found\n", honda);
 		new_exit.exit_2 = 127;
+		free(honda);
+		free_array(temp);
+		free_array(venv);
 		return (new_exit);
 	}
 	c_p = fork();
@@ -49,6 +67,10 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	{
 		_printf("Error Forking\n");
 		new_exit.exit_2 = 126;
+		free(honda);
+		free(foundit);
+		free_array(temp);
+		free_array(venv);
 		return (new_exit);
 	}
 	if (c_p == 0)
@@ -57,14 +79,21 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 		{
 			_printf("Command '%s' not found\n", honda);
 			new_exit.exit_2 = 127;
+			free(honda);
+			free(foundit);
+			free_array(temp);
+			free_array(venv);
 			return (new_exit);
 		}
-		free(foundit);
 	}
 	else
 	{
 		wait(NULL);
 	}
 	new_exit.exit_2 = 0;
+	free(honda);
+	free(foundit);
+	free_array(temp);
+	free_array(venv);
 	return (new_exit);
 }

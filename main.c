@@ -9,8 +9,7 @@
 int main(void)
 {
 	char *cmd, *path, *envv[1024];
-	int i = 0;
-	exit_struct_t rtrn;
+	struct exit_struct rtrn;
 
 	while (1)
 	{
@@ -27,19 +26,17 @@ int main(void)
 		path = path_finder();
 		string_splitter(envv, path, ":");
 		rtrn = my_execute(cmd, envv);
+		free(cmd);
+		free_array(envv);
 		if (rtrn.exit_1)
 		{
+			free(rtrn.exit_1);
 			return (rtrn.exit_2);
 		}
-		free(cmd);
 		if (!isatty(STDIN_FILENO))
 		{
 			return (0);
 		}
-	}
-	while (envv[i])
-	{
-		free(envv[i]);
 	}
 	return (0);
 }

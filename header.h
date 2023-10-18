@@ -13,13 +13,11 @@
 
 /* shell functions */
 extern char **environ;
-
 /**
-  * struct exit_struct - struct to exit shell
-  * @exit_1: exit command
-  * @exit_2: exit status
-  */
-
+ * struct exit_struct - struct to exit shell
+ * @exit_1: exit command
+ * @exit_2: exit status
+ */
 struct exit_struct
 {
 	char *exit_1;
@@ -39,9 +37,7 @@ int current_env(void);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
-char *handle_comment(char *temp);
-char *_strstr(char *haystack, char *needle);
-
+void free_array(char *arr[]);
 /* shell functions end */
 
 /* printf functions */

@@ -6,15 +6,20 @@
  */
 char *get_user_input(void)
 {
-	size_t n = 0;
+	size_t n = 1024;
 	char *buf = NULL;
-	ssize_t nchar_read;
+	int nchar_read;
 
 	nchar_read = getline(&buf, &n, stdin);
 	if (nchar_read == -1 || _strcmp(buf, "exit\n") == 0)
 	{
 		free(buf);
-		exit(1);
+		return ("void_line");
+	}
+	if (nchar_read == -1)
+	{
+		free(buf);
+		return (NULL);
 	}
 	return (buf);
 }
