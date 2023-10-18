@@ -39,6 +39,8 @@ int current_env(void);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
+char *handle_comment(char *temp);
+char *_strstr(char *haystack, char *needle);
 
 /* shell functions end */
 
