@@ -12,7 +12,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	pid_t c_p;
 	char *temp[1024], *venv[1024];
 	char *honda, *foundit;
-	int z = 0, exit_code_temp;
+	int z = 0;
 	exit_struct_t new_exit;
 
 	while (environ[z])
