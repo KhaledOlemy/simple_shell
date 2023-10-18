@@ -4,23 +4,18 @@
  *
  * Return: string input
  */
-char *get_user_input()
+char *get_user_input(void)
 {
-	size_t n = 1024;
-	char *buf = NULL, *str;
-	int nchar_read;
+	size_t n = 0;
+	char *buf = NULL;
+	ssize_t nchar_read;
 
-	buf = malloc(sizeof(char) * n);
 	nchar_read = getline(&buf, &n, stdin);
-	if (nchar_read == 1)
+	
+	if (nchar_read == -1 || _strcmp(buf, "exit\n") == 0)
 	{
-		return ("void_line");
+		free(buf);
+		exit (1);
 	}
-	if (nchar_read == -1)
-	{
-		return (NULL);
-	}
-	str = _strdup(buf);
-	free(buf);
-	return (str);
+	return (buf);
 }

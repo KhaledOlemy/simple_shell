@@ -23,7 +23,7 @@ void free_struct(exit_struct_t *d);
 exit_struct_t my_execute(char *cmd, char *envv[]);
 int pre_line(void);
 char *_strdup(char *str);
-char *get_user_input();
+char *get_user_input(void);
 void string_splitter(char *arr[], char *str, char *dlm);
 char *path_finder(void);
 char *starts_with(char *haystack, char *needle);
