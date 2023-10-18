@@ -13,6 +13,13 @@
 
 /* shell functions */
 extern char **environ;
+
+/**
+  * struct exit_struct - struct to exit shell
+  * @exit_1: exit command
+  * @exit_2: exit status
+  */
+
 struct exit_struct
 {
 	char *exit_1;
