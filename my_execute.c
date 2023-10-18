@@ -17,7 +17,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 
 	while (environ[z])
 	{
-		venv[z] = strdup(environ[z]); /*********************/
+		venv[z] = _strdup(environ[z]);
 		z++;
 	}
 	venv[z] = NULL;
