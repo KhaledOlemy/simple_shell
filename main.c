@@ -27,6 +27,7 @@ int main(void)
 		string_splitter(envv, path, ":");
 		rtrn = my_execute(cmd, envv);
 		free(cmd);
+		free(path);
 		free_array(envv);
 		if (rtrn.exit_1)
 		{

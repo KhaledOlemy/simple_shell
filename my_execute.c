@@ -27,7 +27,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	{
 		_printf("Command '%s' not found\n", honda);
 		new_exit.exit_1 = NULL;
-		new_exit.exit_2 = 127;
+		new_exit.exit_2 = 0;
 		free_array(temp);
 		free_array(venv);
 		return (new_exit);
@@ -54,7 +54,6 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	foundit = search_in_paths(temp[0], envv);
 	if (!foundit)
 	{
-		free(foundit);
 		_printf("Command '%s' not found\n", honda);
 		new_exit.exit_2 = 127;
 		free(honda);

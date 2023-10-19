@@ -29,6 +29,7 @@ char *path_finder(void)
 	int c = 0;
 	char *str = NULL;
 	char *piece;
+	char *new;
 
 	while (environ[c])
 	{
@@ -41,7 +42,9 @@ char *path_finder(void)
 	}
 	piece = strtok(str, "=");
 	piece = strtok(NULL, "=");	/** free needed for str */
-	return (piece);
+	new = _strdup(piece);
+	free(str);
+	return (new);
 }
 /**
  * search_in_paths - searches for command in pathlist
@@ -54,12 +57,16 @@ char *search_in_paths(char *command, char *pathlist[])
 	int z = 0, q = 0;
 	char *temoo[1024];	/* too much*/
 	char *str_holder = NULL;
+	DIR *tempooooo;
 
-	if ((access(command, F_OK) == 0) && (opendir(command) == NULL))
+	tempooooo = opendir(command);
+	if ((access(command, F_OK) == 0) && (tempooooo == NULL))
 	{
+		free(tempooooo);
 		str_holder = _strdup(command);
 		return (str_holder);
 	}
+	free(tempooooo);
 	string_splitter(temoo, command, "/");
 	if (!temoo[0])
 	{
