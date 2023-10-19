@@ -33,10 +33,6 @@ int main(void)
 			free(rtrn.exit_1);
 			return (rtrn.exit_2);
 		}
-		if (!isatty(STDIN_FILENO))
-		{
-			return (0);
-		}
 	}
 	return (0);
 }
