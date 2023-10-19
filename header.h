@@ -38,6 +38,8 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
 void free_array(char *arr[]);
+char *handle_comments(char *temp);
+char *_strstr(char *haystack, char *needle);
 /* shell functions end */
 
 /* printf functions */
