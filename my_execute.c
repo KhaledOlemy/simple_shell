@@ -64,7 +64,7 @@ exit_struct_t my_execute(char *cmd, char *envv[])
 	c_p = fork();
 	if (c_p == -1)
 	{
-		_printf("Error Forking\n");
+		perror("Error Forking\n");
 		new_exit.exit_2 = 126;
 		free(honda);
 		free(foundit);
